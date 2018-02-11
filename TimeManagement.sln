@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeManagement", "TimeManagement\TimeManagement.csproj", "{2CC52390-2EF5-4111-9BD9-CFCAD02E50D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User_module", "UserInformation\User_module\User_module.csproj", "{85059FD0-1953-406E-9238-7C4D4ABB22D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2CC52390-2EF5-4111-9BD9-CFCAD02E50D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CC52390-2EF5-4111-9BD9-CFCAD02E50D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CC52390-2EF5-4111-9BD9-CFCAD02E50D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85059FD0-1953-406E-9238-7C4D4ABB22D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85059FD0-1953-406E-9238-7C4D4ABB22D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85059FD0-1953-406E-9238-7C4D4ABB22D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85059FD0-1953-406E-9238-7C4D4ABB22D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
