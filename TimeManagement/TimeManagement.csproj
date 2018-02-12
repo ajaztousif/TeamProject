@@ -94,10 +94,31 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap-4.0.0\css\bootstrap-grid.css" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap-grid.min.css" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap-reboot.css" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap-reboot.min.css" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap.css" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap.min.css" />
+    <Content Include="bootstrap-4.0.0\js\bootstrap.bundle.js" />
+    <Content Include="bootstrap-4.0.0\js\bootstrap.bundle.min.js" />
+    <Content Include="bootstrap-4.0.0\js\bootstrap.js" />
+    <Content Include="bootstrap-4.0.0\js\bootstrap.min.js" />
+    <Content Include="css\registration.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="bootstrap-4.0.0\css\bootstrap-grid.css.map" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap-grid.min.css.map" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap-reboot.css.map" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap-reboot.min.css.map" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap.css.map" />
+    <Content Include="bootstrap-4.0.0\css\bootstrap.min.css.map" />
+    <Content Include="bootstrap-4.0.0\js\bootstrap.bundle.js.map" />
+    <Content Include="bootstrap-4.0.0\js\bootstrap.bundle.min.js.map" />
+    <Content Include="bootstrap-4.0.0\js\bootstrap.js.map" />
+    <Content Include="bootstrap-4.0.0\js\bootstrap.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -107,8 +128,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Registration.html" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\js\jquery-3.3.1.min.js" />
+    <Content Include="scripts\js\registration.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assests\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
