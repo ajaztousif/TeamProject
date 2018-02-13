@@ -1,0 +1,9 @@
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\DALayer\bin\DALayer.dll.config
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\DALayer\bin\DALayer.dll
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\DALayer\bin\DALayer.pdb
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\DALayer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\DALayer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\DALayer\obj\Debug\DALayer.csprojResolveAssemblyReference.cache
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\DALayer\obj\Debug\DALayer.csproj.CoreCompileInputs.cache
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\DALayer\obj\Debug\DALayer.dll
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\DALayer\obj\Debug\DALayer.pdb
