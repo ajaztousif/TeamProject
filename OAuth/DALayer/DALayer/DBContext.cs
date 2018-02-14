@@ -17,14 +17,14 @@ namespace DALayer
     //}
     public abstract class DBcontext
     {
-        public abstract bool login(string username, string password);
-        public abstract bool registration(string name, string username, string password);
-        public abstract bool changePassword(string username, string oldPassword, string newPassword);
-        public abstract bool deleteUser(string username);
+        public abstract bool Login(string username, string password);
+        public abstract bool Registration(string name, string username, string password);
+        public abstract bool ChangePassword(string username, string oldPassword, string newPassword);
+        public abstract bool DeleteUser(string username);
     }
     public class MssqlContext : DBcontext
     {
-        public override bool login(string username, string password)
+        public override bool Login(string username, string password)
         {
             bool result = false;
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
@@ -42,7 +42,7 @@ namespace DALayer
                 return result;
             }
         }
-        public override bool registration(string name, string username, string password)
+        public override bool Registration(string name, string username, string password)
         {
             bool result = false;
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
@@ -61,7 +61,7 @@ namespace DALayer
             }
             return result;
         }
-        public override bool changePassword(string username, string oldPassword, string newPassword)
+        public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
             bool result = false;
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
@@ -80,7 +80,7 @@ namespace DALayer
             }
             return result;
         }
-        public override bool deleteUser(string username)
+        public override bool DeleteUser(string username)
         {
             bool result = false;
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
