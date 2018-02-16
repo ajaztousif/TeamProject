@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
+
 namespace DALayer
 {
     //public class User
@@ -27,72 +28,47 @@ namespace DALayer
         public override bool Login(string username, string password)
         {
             bool result = false;
-            string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                SqlCommand cmd = new SqlCommand("spLogin", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter parameterName = new SqlParameter("@username", username);
-                SqlParameter parameterPassword = new SqlParameter("@password", password);
-                cmd.Parameters.Add(parameterName);
-                cmd.Parameters.Add(parameterPassword);
-                conn.Open();
-                bool res = Convert.ToBoolean(cmd.ExecuteReader());
 
-                return result;
-            }
+            SqlParameter[] objParam = new SqlParameter[2];
+            objParam[0] = new SqlParameter("username", SqlDbType.VarChar);
+            objParam[1] = new SqlParameter("password", SqlDbType.VarChar);
+            //objParam[0].Value = catType;
+            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+            result = Convert.ToBoolean(dbHelper.RunSp("spLogin", objParam));
+            return result;            
         }
+
         public override bool Registration(string name, string username, string password)
         {
             bool result = false;
-            string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                SqlCommand cmd = new SqlCommand("spInsertUser", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter parameterName = new SqlParameter("@name", name);
-                SqlParameter parameterUserName = new SqlParameter("@username", username);
-                SqlParameter parameterPassword = new SqlParameter("@password", password);
-                cmd.Parameters.Add(parameterName);
-                cmd.Parameters.Add(parameterUserName);
-                cmd.Parameters.Add(parameterPassword);
-                conn.Open();
-                result = Convert.ToBoolean(cmd.ExecuteReader());
-            }
+
+            SqlParameter[] objParam = new SqlParameter[3];
+            objParam[0] = new SqlParameter("name", SqlDbType.VarChar);
+            objParam[1] = new SqlParameter("username", SqlDbType.VarChar);
+            objParam[2] = new SqlParameter("password", SqlDbType.VarChar);
+            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+            result = Convert.ToBoolean(dbHelper.RunSp("spInsertUser", objParam));
             return result;
         }
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
             bool result = false;
-            string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                SqlCommand cmd = new SqlCommand("spChangePassword", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter parameterUserName = new SqlParameter("@username", username);
-                SqlParameter parameterOldPassword = new SqlParameter("@oldPassword", oldPassword);
-                SqlParameter parameterNewPassword = new SqlParameter("@newPassword", newPassword);
-                cmd.Parameters.Add(parameterUserName);
-                cmd.Parameters.Add(parameterOldPassword);
-                cmd.Parameters.Add(parameterNewPassword);
-                conn.Open();
-                result = Convert.ToBoolean(cmd.ExecuteReader());
-            }
+
+            SqlParameter[] objParam = new SqlParameter[3];
+            objParam[0] = new SqlParameter("username", SqlDbType.VarChar);
+            objParam[1] = new SqlParameter("oldPassword", SqlDbType.VarChar);
+            objParam[2] = new SqlParameter("newPassword", SqlDbType.VarChar);
+            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+            result = Convert.ToBoolean(dbHelper.RunSp("spChangePassword", objParam));
             return result;
         }
         public override bool DeleteUser(string username)
         {
             bool result = false;
-            string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                SqlCommand cmd = new SqlCommand("spDeleteUser", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter parameterUserName = new SqlParameter("@username", username);
-                cmd.Parameters.Add(parameterUserName);
-                conn.Open();
-                result = Convert.ToBoolean(cmd.ExecuteReader());
-            }
+
+            SqlParameter[] objParam = new SqlParameter[1];
+            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+            result = Convert.ToBoolean(dbHelper.RunSp("spDeleteUser", objParam));
             return result;
         }
     }

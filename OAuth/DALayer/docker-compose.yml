@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  dalayer:
+    image: dalayer
+    build:
+      context: .\DALayer
+      dockerfile: Dockerfile

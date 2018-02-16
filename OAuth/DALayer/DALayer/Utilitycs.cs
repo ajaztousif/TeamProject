@@ -22,7 +22,8 @@ namespace DALayer
 
             public SQLHelper()
             {
-                mstrCN = System.Configuration.ConfigurationManager.AppSettings["ConectionString"].ToString();
+                //mstrCN = System.Configuration.ConfigurationManager.AppSettings["ConectionString"].ToString();
+                mstrCN = "DBCS";
             }
 
             // Default Constructor

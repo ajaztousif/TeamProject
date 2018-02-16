@@ -1,0 +1,10 @@
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\bin\Debug\TestConsoleApp.exe.config
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\bin\Debug\TestConsoleApp.exe
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\bin\Debug\TestConsoleApp.pdb
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\bin\Debug\DALayer.dll
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\bin\Debug\DALayer.pdb
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\bin\Debug\DALayer.dll.config
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\obj\Debug\TestConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\obj\Debug\TestConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\obj\Debug\TestConsoleApp.exe
+C:\Users\ajazt\Desktop\Tortoise\MyProject\trunk\OAuth\DALayer\TestConsoleApp\obj\Debug\TestConsoleApp.pdb
