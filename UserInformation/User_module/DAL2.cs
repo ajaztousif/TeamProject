@@ -17,9 +17,9 @@ namespace User_module
 
     //}
     public abstract class DBcontextTime
-        {
-        public abstract int Login(string username, string password);
-        public abstract int Registration(string firstname, string lastname, string email, string username, string password, string phno, string deptid );
+    {
+        //    public abstract int Login(string username, string password);
+        public abstract int Registration(string firstname, string lastname, string email, string username, string password, string phno, string deptid);
         public abstract bool ChangePassword(string username, string oldPassword, string newPassword);
         public abstract bool DeleteUser(string username);
     }
@@ -36,7 +36,7 @@ namespace User_module
         //    return result;
         //}
 
-        public override int Registration(string firstname, string lastname, string email, string username, string password, string phno, string deptid);
+        public override int Registration(string firstname, string lastname, string email, string username, string password, string phno, string deptid)
         {
             int result;
 
@@ -50,7 +50,7 @@ namespace User_module
             objParam[5] = new SqlParameter("@phno", phno);
             objParam[6] = new SqlParameter("@deptid", deptid);
 
-        Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
             result = (dbHelper.RunSPTemp("spInsertUser", objParam));
             return result;
         }
@@ -83,11 +83,11 @@ namespace User_module
     //}
     public abstract class Creator
     {
-        public abstract DBcontext FactoryMethod();
+        public abstract DBcontextTime FactoryMethod();
     }
     public class MssqlCreator : Creator
     {
-        public override DBcontext FactoryMethod()
+        public override DBcontextTime FactoryMethod()
         {
 
             return new MssqlContext();
