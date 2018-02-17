@@ -16,35 +16,41 @@ namespace User_module
     //    public string password;
 
     //}
-    public abstract class DBcontext
-    {
+    public abstract class DBcontextTime
+        {
         public abstract int Login(string username, string password);
-        public abstract int Registration(string name, string username, string password);
+        public abstract int Registration(string firstname, string lastname, string email, string username, string password, string phno, string deptid );
         public abstract bool ChangePassword(string username, string oldPassword, string newPassword);
         public abstract bool DeleteUser(string username);
     }
-    public class MssqlContext : DBcontext
+    public class MssqlContext : DBcontextTime
     {
-        public override int Login(string username, string password)
-        {
-            int result;
-            SqlParameter[] objParam = new SqlParameter[2];
-            objParam[0] = new SqlParameter("@username", username);
-            objParam[1] = new SqlParameter("@password", password);
-            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
-            result = (dbHelper.RunSPTemp("spLogin", objParam));
-            return result;
-        }
+        //public override int Login(string username, string password)
+        //{
+        //    int result;
+        //    SqlParameter[] objParam = new SqlParameter[2];
+        //    objParam[0] = new SqlParameter("@username", username);
+        //    objParam[1] = new SqlParameter("@password", password);
+        //    Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+        //    result = (dbHelper.RunSPTemp("spLogin", objParam));
+        //    return result;
+        //}
 
-        public override int Registration(string name, string username, string password)
+        public override int Registration(string firstname, string lastname, string email, string username, string password, string phno, string deptid);
         {
             int result;
 
             SqlParameter[] objParam = new SqlParameter[3];
-            objParam[0] = new SqlParameter("@name", name);
-            objParam[1] = new SqlParameter("@username", username);
-            objParam[2] = new SqlParameter("@password", password);
-            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+            objParam[0] = new SqlParameter("@firstname", firstname);
+            objParam[1] = new SqlParameter("@lastname", lastname);
+            objParam[2] = new SqlParameter("@email", email);
+            objParam[3] = new SqlParameter("@username", username);
+            objParam[4] = new SqlParameter("@password", password);
+
+            objParam[5] = new SqlParameter("@phno", phno);
+            objParam[6] = new SqlParameter("@deptid", deptid);
+
+        Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
             result = (dbHelper.RunSPTemp("spInsertUser", objParam));
             return result;
         }
