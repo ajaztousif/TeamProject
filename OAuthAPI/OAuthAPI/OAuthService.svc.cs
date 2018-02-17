@@ -18,27 +18,14 @@ namespace OAuthAPI
         public string ChangePassword(string username, string password, string confirmpassword)
         {
             string Message;
-            SQLHelper sql = new SQLHelper();
-            SqlParameter[] param =
-            {
-                new SqlParameter("Username",username),
-                new SqlParameter("Password", password),
-                new SqlParameter("CPassword", confirmpassword)
-            };
-            sql.PrepareCommand("spcpwd", param);
-            int returnCode = (int)mCmd.ExecuteNonQuery();
-            if (returnCode == -1)
-            {
-                Message = "Fail";
-            }
-            else
-            {
-                Message = "Success";
-            }
-
-
-
-
+            //SQLHelper sql = new SQLHelper();
+            //SqlParameter[] param =
+            //{
+            //    new SqlParameter("Username",username),
+            //    new SqlParameter("Password", password),
+            //    new SqlParameter("CPassword", confirmpassword)
+            //};
+            //sql.PrepareCommand("spcpwd", param);
             string conn = ConfigurationManager.ConnectionStrings["UserTimeConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(conn))
             {
@@ -52,16 +39,16 @@ namespace OAuthAPI
                 //cmd.Parameters.AddWithValue("pFirstName", user.FirstName);
                 //cmd.Parameters.AddWithValue("pLastName", user.LastName);
                 con.Open();
-                //int returnCode = (int)cmd.ExecuteScalar();
-                //if (returnCode == -1)
-                //{
-                //    Message = "Fail";
-                //}
-                //else
-                //{
-                //    Message = "Success";
-                //    con.Close();
-                //}
+                int returnCode = (int)cmd.ExecuteScalar();
+                if (returnCode == -1)
+                {
+                    Message = "Fail";
+                }
+                else
+                {
+                    Message = "Success";
+                    con.Close();
+                }
             }
             return Message;
         }
@@ -91,6 +78,10 @@ namespace OAuthAPI
                 }
             }
             return Message;
+        }
+        public void GetUserData()
+        {
+            
         }
         public string Login(string email, string password)
         {
@@ -154,6 +145,6 @@ namespace OAuthAPI
                 }
             }
             return Message;
-        }  
+        }
     }
 }

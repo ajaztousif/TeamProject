@@ -130,7 +130,7 @@ namespace OAuthAPI
                 if (pr != null)
                     mCmd.Parameters.Add(pr);
         }
-        public void PrepareCommand(string spName, SqlParameter[] parms)
+        public string PrepareCommand(string spName, SqlParameter[] parms)
         {
             OpenConnection();
             mCmd = mCn.CreateCommand();
@@ -151,6 +151,7 @@ namespace OAuthAPI
             {
                 Message = "Success";
             }
+            return Message;
         }
 
         public void ExecutePrepared()
