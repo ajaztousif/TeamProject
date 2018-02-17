@@ -529,7 +529,7 @@ namespace DALayer
                         if (pr != null)
                             mCmd.Parameters.Add(pr);
 
-                    rtnVal = mCmd.ExecuteNonQuery();
+                    rtnVal = Convert.ToInt32(mCmd.ExecuteScalar());
                     mCmd.Connection.Close();
                 }
                 return rtnVal;

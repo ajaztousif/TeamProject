@@ -27,13 +27,28 @@ namespace DALayer
     {
         public override int Login(string username, string password)
         {
-            int result;
-            SqlParameter[] objParam = new SqlParameter[2];
-            objParam[0] = new SqlParameter("@username", username);
-            objParam[1] = new SqlParameter("@password", password);
-            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
-            result = (dbHelper.RunSPTemp("spLogin", objParam));
-            return result;            
+            //int result;
+            //SqlParameter[] objParam = new SqlParameter[2];
+            //objParam[0] = new SqlParameter("@username", username);
+            //objParam[1] = new SqlParameter("@password", password);
+            //Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+            //result = (dbHelper.RunSPTemp("spLogin", objParam));
+            //return result;
+
+            int res;
+            string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("spLogin", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@uname", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                conn.Open();
+                res = (int)cmd.ExecuteScalar();
+                //result = Convert.ToBoolean(res);
+            }
+            return res;
         }
 
         public override int Registration(string name, string username, string password)
