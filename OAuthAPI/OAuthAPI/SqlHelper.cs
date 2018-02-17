@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace OAuthAPI
 {
-   public sealed class SQLHelper : IDisposable
+    public sealed class SQLHelper : IDisposable
     {
         private const int COMMAND_TIMEOUT = 30;
 
@@ -18,7 +18,9 @@ namespace OAuthAPI
 
         public SQLHelper()
         {
-            mstrCN = ConfigurationManager.ConnectionStrings["UserTimeConnection"].ToString();
+            mstrCN = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            //mstrCN = System.Configuration.ConfigurationManager.AppSettings["ConectionString"].ToString();
+            //mstrCN = "DBCS";
         }
 
         // Default Constructor
@@ -130,7 +132,7 @@ namespace OAuthAPI
                 if (pr != null)
                     mCmd.Parameters.Add(pr);
         }
-        public string PrepareCommand(string spName, SqlParameter[] parms)
+        public void PrepareCommand(string spName, SqlParameter[] parms)
         {
             OpenConnection();
             mCmd = mCn.CreateCommand();
@@ -141,17 +143,6 @@ namespace OAuthAPI
             foreach (SqlParameter pr in parms)
                 if (pr != null)
                     mCmd.Parameters.Add(pr);
-            string Message;
-            int returnCode = (int)mCmd.ExecuteScalar();
-            if (returnCode == -1)
-            {
-                Message = "Fail";
-            }
-            else
-            {
-                Message = "Success";
-            }
-            return Message;
         }
 
         public void ExecutePrepared()
@@ -522,7 +513,22 @@ namespace OAuthAPI
             }
             return rtnVal;
         }
+        public int RunSPTemp(string Sql, SqlParameter[] parms)
+        {
+            InitCommandForSP(Sql);
+            int rtnVal = 0;
 
+            using (mCmd)
+            {
+                foreach (SqlParameter pr in parms)
+                    if (pr != null)
+                        mCmd.Parameters.Add(pr);
+
+                rtnVal = mCmd.ExecuteNonQuery();
+                mCmd.Connection.Close();
+            }
+            return rtnVal;
+        }
         #region IDisposable Members
 
         public void Dispose()
