@@ -12,7 +12,16 @@ namespace OAuthAPI
     public interface IOAuthService
     {
         [OperationContract]
-        string InsertData(User user);
+        string Login(string email, string password);
+
+        [OperationContract]
+        string Register(string name, string username, string password);
+
+        [OperationContract]
+        string ChangePassword(string username, string password, string confirmpassword);
+
+        [OperationContract]
+        string DeleteUser(string username);
     }
 
     [DataContract]
