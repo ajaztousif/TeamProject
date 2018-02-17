@@ -81,7 +81,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBcon.cs" />
     <Compile Include="DBContext.cs" />
+    <Compile Include="DBUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilitycs.cs" />
   </ItemGroup>

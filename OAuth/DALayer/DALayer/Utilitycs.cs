@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -22,8 +23,9 @@ namespace DALayer
 
             public SQLHelper()
             {
+                mstrCN = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
                 //mstrCN = System.Configuration.ConfigurationManager.AppSettings["ConectionString"].ToString();
-                mstrCN = "DBCS";
+                //mstrCN = "DBCS";
             }
 
             // Default Constructor
@@ -516,7 +518,22 @@ namespace DALayer
                 }
                 return rtnVal;
             }
+            public int RunSPTemp(string Sql, SqlParameter[] parms)
+            {
+                InitCommandForSP(Sql);
+                int rtnVal = 0;
 
+                using (mCmd)
+                {
+                    foreach (SqlParameter pr in parms)
+                        if (pr != null)
+                            mCmd.Parameters.Add(pr);
+
+                    rtnVal = mCmd.ExecuteNonQuery();
+                    mCmd.Connection.Close();
+                }
+                return rtnVal;
+            }
             #region IDisposable Members
 
             public void Dispose()

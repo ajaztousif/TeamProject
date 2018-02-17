@@ -18,36 +18,34 @@ namespace DALayer
     //}
     public abstract class DBcontext
     {
-        public abstract bool Login(string username, string password);
-        public abstract bool Registration(string name, string username, string password);
+        public abstract int Login(string username, string password);
+        public abstract int Registration(string name, string username, string password);
         public abstract bool ChangePassword(string username, string oldPassword, string newPassword);
         public abstract bool DeleteUser(string username);
     }
     public class MssqlContext : DBcontext
     {
-        public override bool Login(string username, string password)
+        public override int Login(string username, string password)
         {
-            bool result = false;
-
+            int result;
             SqlParameter[] objParam = new SqlParameter[2];
-            objParam[0] = new SqlParameter("username", SqlDbType.VarChar);
-            objParam[1] = new SqlParameter("password", SqlDbType.VarChar);
-            //objParam[0].Value = catType;
+            objParam[0] = new SqlParameter("@username", username);
+            objParam[1] = new SqlParameter("@password", password);
             Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
-            result = Convert.ToBoolean(dbHelper.RunSp("spLogin", objParam));
+            result = (dbHelper.RunSPTemp("spLogin", objParam));
             return result;            
         }
 
-        public override bool Registration(string name, string username, string password)
+        public override int Registration(string name, string username, string password)
         {
-            bool result = false;
+            int result;
 
             SqlParameter[] objParam = new SqlParameter[3];
-            objParam[0] = new SqlParameter("name", SqlDbType.VarChar);
-            objParam[1] = new SqlParameter("username", SqlDbType.VarChar);
-            objParam[2] = new SqlParameter("password", SqlDbType.VarChar);
+            objParam[0] = new SqlParameter("@name", name);
+            objParam[1] = new SqlParameter("@username", username);
+            objParam[2] = new SqlParameter("@password", password);
             Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
-            result = Convert.ToBoolean(dbHelper.RunSp("spInsertUser", objParam));
+            result = (dbHelper.RunSPTemp("spInsertUser", objParam));
             return result;
         }
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
@@ -55,11 +53,11 @@ namespace DALayer
             bool result = false;
 
             SqlParameter[] objParam = new SqlParameter[3];
-            objParam[0] = new SqlParameter("username", SqlDbType.VarChar);
-            objParam[1] = new SqlParameter("oldPassword", SqlDbType.VarChar);
-            objParam[2] = new SqlParameter("newPassword", SqlDbType.VarChar);
+            objParam[0] = new SqlParameter("@username", username);
+            objParam[1] = new SqlParameter("@oldPassword", oldPassword);
+            objParam[2] = new SqlParameter("@newPassword", newPassword);
             Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
-            result = Convert.ToBoolean(dbHelper.RunSp("spChangePassword", objParam));
+            result = Convert.ToBoolean(dbHelper.RunSPTemp("spChangePassword", objParam));
             return result;
         }
         public override bool DeleteUser(string username)
@@ -67,6 +65,7 @@ namespace DALayer
             bool result = false;
 
             SqlParameter[] objParam = new SqlParameter[1];
+            objParam[0] = new SqlParameter("@username", username);
             Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
             result = Convert.ToBoolean(dbHelper.RunSp("spDeleteUser", objParam));
             return result;
