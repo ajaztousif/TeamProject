@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -137,6 +138,7 @@
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\js\jquery-3.3.1.min.js" />
     <Content Include="scripts\js\registration.js" />
+    <Content Include="TimeService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -144,10 +146,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeService.asmx.cs">
+      <DependentUpon>TimeService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UserInformation\User_module\User_module.csproj">
+      <Project>{85059fd0-1953-406e-9238-7c4d4abb22d4}</Project>
+      <Name>User_module</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
