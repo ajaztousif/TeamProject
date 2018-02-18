@@ -2,146 +2,39 @@
  * Created by SMITDOSHI on 2/17/18.
  */
 
-$(document).ready(function() {
-    $('#reg_form').bootstrapValidator({
-            // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                first_name: {
-                    validators: {
-                        stringLength: {
-                            min: 2,
-                        },
-                        notEmpty: {
-                            message: 'Please supply your first name'
-                        }
-                    }
-                },
-                last_name: {
-                    validators: {
-                        stringLength: {
-                            min: 2,
-                        },
-                        notEmpty: {
-                            message: 'Please supply your last name'
-                        }
-                    }
-                },
+function checkPass()
+{
+    var pass1 = document.getElementById('pass1');
+    var pass2 = document.getElementById('pass2');
 
-                phone: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please supply your phone number'
-                        },
-                        phone: {
-                            country: 'US',
-                            message: 'Please supply a vaild phone number with area code'
-                        }
-                    }
-                },
-                address: {
-                    validators: {
-                        stringLength: {
-                            min: 8,
-                        },
-                        notEmpty: {
-                            message: 'Please supply your street address'
-                        }
-                    }
-                },
-                city: {
-                    validators: {
-                        stringLength: {
-                            min: 4,
-                        },
-                        notEmpty: {
-                            message: 'Please supply your city'
-                        }
-                    }
-                },
-                state: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please select your state'
-                        }
-                    }
-                },
-                zip: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please supply your zip code'
-                        },
-                        zipCode: {
-                            country: 'US',
-                            message: 'Please supply a vaild zip code'
-                        }
-                    }
-                },
-                comment: {
-                    validators: {
-                        stringLength: {
-                            min: 10,
-                            max: 200,
-                            message:'Please enter at least 10 characters and no more than 200'
-                        },
-                        notEmpty: {
-                            message: 'Please supply a description about yourself'
-                        }
-                    }
-                },
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please supply your email address'
-                        },
-                        emailAddress: {
-                            message: 'Please supply a valid email address'
-                        }
-                    }
-                },
+    var message = document.getElementById('confirmMessage');
 
-                password: {
-                    validators: {
-                        identical: {
-                            field: 'confirmPassword',
-                            message: 'Confirm your password below - type same password please'
-                        }
-                    }
-                },
-                confirmPassword: {
-                    validators: {
-                        identical: {
-                            field: 'password',
-                            message: 'The password and its confirm are not the same'
-                        }
-                    }
-                },
+    //Set the colors we will be using ...
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+
+    //Compare the values in the password field
+    //and the confirmation field
+    if(pass1.value == pass2.value){
+        //The passwords match.
+        //Set the color to the good color and inform
+        //the user that they have entered the correct password
+        pass2.style.backgroundColor = goodColor;
+        message.style.color = goodColor;
+        message.innerHTML = "Passwords Match"
+    }else{
+        //The passwords do not match.
+        //Set the color to the bad color and
+        //notify the user.
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Passwords Do Not Match!"
+    }
+}
 
 
-            }
-        })
+// validates text only
+function Validate(txt) {
+    txt.value = txt.value.replace(/[^a-zA-Z-'\n\r.]+/g, '');
+}
 
-
-        .on('success.form.bv', function(e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-            $('#reg_form').data('bootstrapValidator').resetForm();
-
-            // Prevent form submission
-            e.preventDefault();
-
-            // Get the form instance
-            var $form = $(e.target);
-
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                console.log(result);
-            }, 'json');
-        });
-});
