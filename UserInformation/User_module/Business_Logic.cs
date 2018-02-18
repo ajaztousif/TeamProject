@@ -20,10 +20,23 @@ namespace User_module
         public string Email { set; get; }
     }
 
-    public class Registeration
+    public class UserBl
     {
+        public DataSet CheckUserAuthentication(User_Properties ob)
+        {
+            Creator c = new MssqlCreator();
+            DBcontextTime d = c.FactoryMethod();
+            DataSet result = d.Login(ob.User_Name);
+            return result;
+        }
+        public  void Registeration()
 
-      
+        {
+
+        }
+
+
+
     }
 
     

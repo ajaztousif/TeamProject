@@ -18,23 +18,25 @@ namespace User_module
     //}
     public abstract class DBcontextTime
     {
-        //    public abstract int Login(string username, string password);
+         public abstract DataSet Login(string username);
+       
         public abstract int Registration(string firstname, string lastname, string email, string username, string password, string phno, string deptid);
+
         public abstract bool ChangePassword(string username, string oldPassword, string newPassword);
         public abstract bool DeleteUser(string username);
     }
     public class MssqlContext : DBcontextTime
     {
-        //public override int Login(string username, string password)
-        //{
-        //    int result;
-        //    SqlParameter[] objParam = new SqlParameter[2];
-        //    objParam[0] = new SqlParameter("@username", username);
-        //    objParam[1] = new SqlParameter("@password", password);
-        //    Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
-        //    result = (dbHelper.RunSPTemp("spLogin", objParam));
-        //    return result;
-        //}
+        public override DataSet Login(string username)
+        {
+            DataSet ds=new DataSet() ;
+            SqlParameter[] objParam = new SqlParameter[1];
+            objParam[0] = new SqlParameter("@username", username);
+
+            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+            ds = dbHelper.RunSpReturnDs("spReturnUserId", objParam);
+            return ds;
+        }
 
         public override int Registration(string firstname, string lastname, string email, string username, string password, string phno, string deptid)
         {
@@ -46,12 +48,10 @@ namespace User_module
             objParam[2] = new SqlParameter("@email", email);
             objParam[3] = new SqlParameter("@username", username);
             objParam[4] = new SqlParameter("@password", password);
-
             objParam[5] = new SqlParameter("@phno", phno);
             objParam[6] = new SqlParameter("@deptid", deptid);
-
-            Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
-            result = (dbHelper.RunSPTemp("spInsertUser", objParam));
+           Utilitycs.SQLHelper dbHelper = new Utilitycs.SQLHelper();
+            result = Convert.ToInt32(dbHelper.RunSpReturnScalar("spInsertUser", objParam));
             return result;
         }
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
