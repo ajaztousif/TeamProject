@@ -33,22 +33,33 @@ namespace OAuthAPI
         string DeleteUser(string username);
 
         //Get Users data to Admin
-        [OperationContract]
-        [WebInvoke(Method ="GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate ="/GetUsersData", 
-             ResponseFormat =WebMessageFormat.Json)]
-        void GetUserData();
-    }
 
-    [DataContract]
-    public class User
-    {
-        [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        public string Name { get; set; }
-        [DataMember]
-        public string Email { get; set; }
-        [DataMember]
-        public string Password { get; set; }
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "/TRegistration/{fname}/{lname}/{email}/{uname}/{pwd}/{pno}/{dept}", RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json)]
+        string TRegistration(string fname, string lname, string email, string uname, string pwd, string pno, string dept);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "/GetUserId/{username}", RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json)]
+        string GetUserId(string username);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "/DeleteTUser/{username}", RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json)]
+        string DeleteTUser(string username);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "/GetTimeSheets/{Id}", RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json)]
+        string GetTimeSheets(string Id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "/ChangeTPassword/{uname}/{pwd}/{npwd}", RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json)]
+        string ChangeTPassword(string uname, string pwd, string npwd);
+
+
     }
 }

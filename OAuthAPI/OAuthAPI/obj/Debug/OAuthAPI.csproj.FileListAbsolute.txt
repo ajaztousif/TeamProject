@@ -18,8 +18,6 @@ C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\APIProject\TeamProject.git\trunk\OAuthAPI\OAuthAPI\obj\Debug\OAuthAPI.csprojResolveAssemblyReference.cache
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\APIProject\TeamProject.git\trunk\OAuthAPI\OAuthAPI\obj\Debug\OAuthAPI.dll
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\APIProject\TeamProject.git\trunk\OAuthAPI\OAuthAPI\obj\Debug\OAuthAPI.pdb
-C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\obj\Debug\OAuthAPI.csprojResolveAssemblyReference.cache
-C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\obj\Debug\OAuthAPI.csproj.CoreCompileInputs.cache
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\bin\roslyn\csc.exe
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -39,5 +37,7 @@ C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\bin\Newtonsoft.Json.dll
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\bin\Newtonsoft.Json.xml
+C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\obj\Debug\OAuthAPI.csproj.CoreCompileInputs.cache
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\obj\Debug\OAuthAPI.dll
 C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\obj\Debug\OAuthAPI.pdb
+C:\Users\Venkata Samala\Documents\Visual Studio 2015\Projects\TeamProject-master\TeamProject.git\trunk\OAuthAPI\OAuthAPI\obj\Debug\OAuthAPI.csprojResolveAssemblyReference.cache

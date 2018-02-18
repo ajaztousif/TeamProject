@@ -134,6 +134,7 @@
     <Compile Include="SuccessPage.aspx.designer.cs">
       <DependentUpon>SuccessPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

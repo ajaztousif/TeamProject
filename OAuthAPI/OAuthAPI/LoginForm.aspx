@@ -32,7 +32,16 @@
             C Password:   <asp:TextBox ID="NCPwd" runat="server" TextMode="Password"></asp:TextBox><br />
             <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Passwords doesn't matches" Operator="Equal" ControlToValidate="NCPwd" ControlToCompare="NPwd" Type="String"></asp:CompareValidator><br />
             <asp:Button ID="Button4" runat="server" Text="Save" OnClick="Button3_Click"/>
-
+        </div>
+        <div>
+            FName: <asp:TextBox runat="server" ID="FName"/>
+            LName: <asp:TextBox runat="server" ID="LName"/>
+            Email: <asp:TextBox runat="server" ID="Email"/>
+            UName: <asp:TextBox runat="server" ID="UsName"/>
+            Pwd: <asp:TextBox runat="server" ID="UPwd" TextMode="Password" />
+            Phno: <asp:TextBox runat="server" ID="Phno" TextMode="Number"/>
+            DeptId: <asp:TextBox runat="server" ID="DId" TextMode="Number"/>
+            <asp:Button Text="Submit" ID="BtnSmbt" runat="server" OnClick="BtnSmbt_Click" />
         </div>
     </form>
 </body>

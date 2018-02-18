@@ -31,7 +31,7 @@ namespace OAuthAPI
             Stream GETResponseStream = GETResponse.GetResponseStream();
             StreamReader sr = new StreamReader(GETResponseStream);
             string val = sr.ReadToEnd().ToString();
-            
+            Label1.Text = val;
             //var result = srv.Login(username, password);
             //if (result == "Fail")
             //{
@@ -48,7 +48,7 @@ namespace OAuthAPI
             string name = Nametxt.Text;
             string username = UserTxt.Text;
             string password = Pwdtxt.Text;
-            string url = string.Format("http://localhost:56060/OAuthService.svc/Login/{0}+{1}+{2}", username, password, name);
+            string url = string.Format("http://localhost:56060/OAuthService.svc/Register/{0}/{1}/{2}", name, username, password);
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
             request.Method = "GET";
             request.ContentType = "application/json";
@@ -58,6 +58,7 @@ namespace OAuthAPI
             Stream GETResponseStream = GETResponse.GetResponseStream();
             StreamReader sr = new StreamReader(GETResponseStream);
             string val = sr.ReadToEnd().ToString();
+            Label2.Text = val;
             //        var result = srv.Register(name, username, password);
             //        if (result == "Fail")
             //        {
@@ -83,6 +84,28 @@ namespace OAuthAPI
             //{
             //    Response.Redirect("~/SuccessPage.aspx");
             //}
+        }
+
+        protected void BtnSmbt_Click(object sender, EventArgs e)
+        {
+            Users user = new Users();
+            user.FirstName = FName.Text;
+            user.LastName = LName.Text;
+            user.Email = Email.Text;
+            user.Username = UsName.Text;
+            user.Password = UPwd.Text;
+            user.Phno = Phno.Text;
+            user.DeptId = Convert.ToInt32(DId.Text);
+            string url = string.Format("http://localhost:56060/OAuthService.svc/TRegistration/{0}", user);
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            request.Method = "GET";
+            request.ContentType = "application/json";
+            request.Accept = "application/json";
+            request.ContentLength = 0;
+            HttpWebResponse GETResponse = (HttpWebResponse)request.GetResponse();
+            Stream GETResponseStream = GETResponse.GetResponseStream();
+            StreamReader sr = new StreamReader(GETResponseStream);
+            string val = sr.ReadToEnd().ToString();
         }
     }
 }
