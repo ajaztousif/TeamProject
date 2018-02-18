@@ -13,20 +13,28 @@ namespace OAuthAPI
     public interface IOAuthService
     {
         [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "/Login/{email}/{password}",  RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json)]
         string Login(string email, string password);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "/Register/{name}/{username}/{password}", RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json)]
         string Register(string name, string username, string password);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "/ChangePassword/{username}/{password}/{confirmpassword}", RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json)]
         string ChangePassword(string username, string password, string confirmpassword);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "/DeleteUser/{username}", RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json)]
         string DeleteUser(string username);
 
         //Get Users data to Admin
         [OperationContract]
-        [WebInvoke(Method ="GET", UriTemplate ="/GetUsersData", 
+        [WebInvoke(Method ="GET", BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate ="/GetUsersData", 
              ResponseFormat =WebMessageFormat.Json)]
         void GetUserData();
     }

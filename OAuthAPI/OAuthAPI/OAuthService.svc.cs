@@ -6,7 +6,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Activation;
 using System.Text;
+using Newtonsoft.Json;
+
+using System.Web.Script.Serialization;
 
 namespace OAuthAPI
 {
@@ -15,6 +19,7 @@ namespace OAuthAPI
     public class OAuthService : IOAuthService
     {
         private SqlCommand mCmd;
+        string conn = ConfigurationManager.ConnectionStrings["UserInformation"].ConnectionString;
         public string ChangePassword(string username, string password, string confirmpassword)
         {
             string Message;
@@ -26,7 +31,7 @@ namespace OAuthAPI
             //    new SqlParameter("CPassword", confirmpassword)
             //};
             //sql.PrepareCommand("spcpwd", param);
-            string conn = ConfigurationManager.ConnectionStrings["UserTimeConnection"].ConnectionString;
+            string conn = ConfigurationManager.ConnectionStrings["UserInformation"].ConnectionString;
             using (SqlConnection con = new SqlConnection(conn))
             {
 
@@ -50,15 +55,15 @@ namespace OAuthAPI
                     con.Close();
                 }
             }
-            return Message;
+            return (new JavaScriptSerializer().Serialize(Message));
         }
         public string DeleteUser(string username)
         {
-            string Message;
+            string Message = string.Empty;
             //SQLHelper sql = new SQLHelper();
             //sql.OpenConnection();
             //SqlCommand cmd = new SqlCommand("spAuthenticateUser", )
-            string conn = ConfigurationManager.ConnectionStrings["UserTimeConnection"].ConnectionString;
+            //string conn = ConfigurationManager.ConnectionStrings["UserTimeConnection"].ConnectionString;
             using (SqlConnection con = new SqlConnection(conn))
             {
 
@@ -76,8 +81,9 @@ namespace OAuthAPI
                     Message = "Success";
                     con.Close();
                 }
+
             }
-            return Message;
+            return (new JavaScriptSerializer().Serialize(Message));
         }
         public void GetUserData()
         {
@@ -86,60 +92,76 @@ namespace OAuthAPI
         public string Login(string username, string password)
         {
             string Message;
-            //SQLHelper sql = new SQLHelper();
-            //sql.OpenConnection();
-            //SqlCommand cmd = new SqlCommand("spAuthenticateUser", )
-            //string conn = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
-            //using (SqlConnection con = new SqlConnection(conn))
+            #region
+            {
+                //SQLHelper sql = new SQLHelper();
+                //sql.OpenConnection();
+                //SqlCommand cmd = new SqlCommand("spAuthenticateUser", )
+               
+                using (SqlConnection con = new SqlConnection(conn))
+                {
+                    SqlCommand cmd = new SqlCommand("LoginAuth", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@email", username);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    //cmd.Parameters.AddWithValue("pCnfirm", user.ConfirmPassword);
+                    //cmd.Parameters.AddWithValue("pFirstName", user.FirstName);
+                    //cmd.Parameters.AddWithValue("pLastName", user.LastName);
+                    con.Open();
+                    int returnCode = (int)cmd.ExecuteScalar();
+                    if (returnCode == -1)
+                    {
+                        Message = "Fail";
+                    }
+                    else
+                    {
+                        Message = "Success";
+                        con.Close();
+                    }
+                }
+                return (new JavaScriptSerializer().Serialize(Message));
+            }
+            #endregion
+            //Creator c = new MssqlCreator();
+            //DBcontext d = c.FactoryMethod();
+            //int result = d.Login(username, password);
+            //if (result == 1)
             //{
-
-            //    SqlCommand cmd = new SqlCommand("spLogin", con);
-            //    cmd.CommandType = CommandType.StoredProcedure;
-            //    cmd.Parameters.AddWithValue("@username", email);
-            //    cmd.Parameters.AddWithValue("@password", password);
-            //    //cmd.Parameters.AddWithValue("pCnfirm", user.ConfirmPassword);
-            //    //cmd.Parameters.AddWithValue("pFirstName", user.FirstName);
-            //    //cmd.Parameters.AddWithValue("pLastName", user.LastName);
-            //    con.Open();
-            //    int returnCode = (int)cmd.ExecuteScalar();
-            //    if (returnCode == -1)
-            //    {
-            //        Message = "Fail";
-            //    }
-            //    else
-            //    {
-            //        Message = "Success";
-            //        con.Close();
-            //    }
+            //    Message = "Success";
             //}
-            Creator c = new MssqlCreator();
-            DBcontext d = c.FactoryMethod();
-            int result = d.Login(username, password);
-            if (result == 1)
-            {
-                Message = "Success";
-            }
-            else
-            {
-                Message = "Fail";
-            }
-            return Message;
+            //else
+            //{
+            //    Message = "Fail";
+            //}
+           
         }
         public string Register(string name, string username, string password)
         {
             string Message = string.Empty;
-            Creator c = new MssqlCreator();
-            DBcontext d = c.FactoryMethod();
-            int result = d.Registration(name, username, password);
-            if (result ==1)
+            using (SqlConnection con = new SqlConnection(conn))
             {
-                Message = "Success";
+                SqlCommand cmd = new SqlCommand("spnrgstr", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue("@Password", password);
+                //cmd.Parameters.AddWithValue("pFirstName", user.FirstName);
+                //cmd.Parameters.AddWithValue("pLastName", user.LastName);
+                con.Open();
+                int returnCode = (int)cmd.ExecuteScalar();
+                if (returnCode == -1)
+                {
+                    Message = "Fail";
+                }
+                else
+                {
+                    Message = "Success";
+                    con.Close();
+                }
             }
-            else
-            {
-                Message = "Fail";
-            }
-            return Message;
+            return (new JavaScriptSerializer().Serialize(Message));
         }
     }
 }
